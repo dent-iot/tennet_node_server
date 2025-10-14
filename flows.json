@@ -1,0 +1,1314 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "main flows",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "70730ad8a873e13d",
+        "type": "mqtt-broker",
+        "d": true,
+        "name": "",
+        "broker": "excellent-engraver.cloudmqtt.com",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "61a81418963b3df5",
+        "type": "websocket-listener",
+        "path": "http://192.168.2.9:80",
+        "wholemsg": "false"
+    },
+    {
+        "id": "6eb8205a2ca69d8c",
+        "type": "influxdb",
+        "d": true,
+        "hostname": "influxdb",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb ",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "4f9b12fbd53ee4e5",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/red/files/:folder/:filename",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 1000,
+        "wires": [
+            [
+                "224bb0e81e46ee64",
+                "ff2ae6d96d8ec5c8",
+                "7b43d47a6a7a26f4"
+            ]
+        ]
+    },
+    {
+        "id": "f174f00dd5e3fee0",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "video/mp4"
+        },
+        "x": 1410,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "224bb0e81e46ee64",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 430,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "9a9851c5163d8f57",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1410,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "7b43d47a6a7a26f4",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 5",
+        "func": "msg.payload.destinationFile = msg.req.params.folder+\"_temp\"\nmsg.payload.blobName = msg.req.params.folder+\"/\"+msg.req.params.filename\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1000,
+        "wires": [
+            [
+                "664a0d2e3dafd7fc"
+            ]
+        ]
+    },
+    {
+        "id": "664a0d2e3dafd7fc",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "blob request",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "ae0362b9bcbeb298",
+        "type": "file in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "filename": "temp_file_location",
+        "filenameType": "msg",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 1240,
+        "y": 1000,
+        "wires": [
+            [
+                "f174f00dd5e3fee0",
+                "9a9851c5163d8f57"
+            ]
+        ]
+    },
+    {
+        "id": "ff2ae6d96d8ec5c8",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.params",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "5dd6dab4277027fa",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "3807d8d19e41a15b",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 7",
+        "func": "msg.temp_file_location = \"blobs_downloaded/\"+msg.payload.destinationFile\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1040,
+        "y": 1000,
+        "wires": [
+            [
+                "ae0362b9bcbeb298"
+            ]
+        ]
+    },
+    {
+        "id": "b3bf4f3b6d256659",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "property": "req.params.filename",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "none",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "none",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 390,
+        "y": 1160,
+        "wires": [
+            [
+                "f157eb3e02ddd9e8"
+            ],
+            [
+                "b170f65bb10bfc22"
+            ]
+        ]
+    },
+    {
+        "id": "b170f65bb10bfc22",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 9",
+        "func": "msg.payload = \"<body><h1 style=\\\"color:lightsteelblue;font-family:sans-serif;font-size:medium;\\\" >geen bestand geselecteerd</ h1 ></body>\";\nmsg.statusCode = 404;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 1200,
+        "wires": [
+            [
+                "b795de935bf658cc"
+            ]
+        ]
+    },
+    {
+        "id": "05fe56f3c24bc5b4",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/red/iframe/video/:filename",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 1140,
+        "wires": [
+            [
+                "b3bf4f3b6d256659"
+            ]
+        ]
+    },
+    {
+        "id": "f157eb3e02ddd9e8",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 13",
+        "func": "msg.payload = \"<video width=\\\"100%\\\" height=\\\"100%\\\" autoplay controls> <source src=\\\"/red/files/clips/\"+msg.req.params.filename+\"\\\" type=\\\"video/mp4\\\"> </video>\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 1140,
+        "wires": [
+            [
+                "b795de935bf658cc"
+            ]
+        ]
+    },
+    {
+        "id": "b795de935bf658cc",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "statusCode": "",
+        "headers": {
+            "content-type": "text/html"
+        },
+        "x": 810,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "e593a4802e0ae7f9",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "function 14",
+        "func": "msg.payload = msg.filename\nmsg.img_file_name = msg.device_id + \".jpeg\"\nmsg.blobName = \"images/\" + msg.img_file_name\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 740,
+        "wires": [
+            [
+                "e43af03388d35c76",
+                "33448acb217706ed"
+            ]
+        ]
+    },
+    {
+        "id": "3df582c40cbaa5ed",
+        "type": "file",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 830,
+        "y": 740,
+        "wires": [
+            [
+                "e593a4802e0ae7f9",
+                "7386608ae013e1d1"
+            ]
+        ]
+    },
+    {
+        "id": "cdd9d24e8efae5ca",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "msg.filename = msg.device_id+\"_temp_input.jpeg\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 740,
+        "wires": [
+            [
+                "3df582c40cbaa5ed",
+                "618f9be62176490a"
+            ]
+        ]
+    },
+    {
+        "id": "618f9be62176490a",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "7386608ae013e1d1",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "33448acb217706ed",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "bff1c379e3d703ca",
+        "type": "file in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "filename": "test_temp_input.png",
+        "filenameType": "str",
+        "format": "",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 640,
+        "y": 1320,
+        "wires": [
+            [
+                "b2b8905c347c76d0"
+            ]
+        ]
+    },
+    {
+        "id": "7c9b4519f15fbae9",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "viewing_file",
+        "url": "/view_img",
+        "method": "get",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 1320,
+        "wires": [
+            [
+                "26fc448cf20e5d12"
+            ]
+        ]
+    },
+    {
+        "id": "1b8a05f3e777ed03",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "ping_return",
+        "statusCode": "200",
+        "headers": {
+            "content-type": "image/png"
+        },
+        "x": 1010,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "26fc448cf20e5d12",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "b2b8905c347c76d0",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "func": "msg.payload = msg.payload.toString('base64');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 1320,
+        "wires": [
+            [
+                "d7c42492fdfd0cad",
+                "1b8a05f3e777ed03"
+            ]
+        ]
+    },
+    {
+        "id": "d7c42492fdfd0cad",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "086fbe7415add67f",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/up/device/:imei/video/:video_id",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 320,
+        "wires": [
+            [
+                "bbf626ccfae366e0",
+                "8da762b90d8e6a77",
+                "6f0631f7f2fd0b92",
+                "d8fedde14daba7df"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-video-o"
+    },
+    {
+        "id": "bbf626ccfae366e0",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "http put payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req.headers",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8da762b90d8e6a77",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "always ok",
+        "statusCode": "204",
+        "headers": {},
+        "x": 800,
+        "y": 280,
+        "wires": [],
+        "info": "always ok, so abusing is a bit harder\r\nand the device can't do anything about errors anyways"
+    },
+    {
+        "id": "6f0631f7f2fd0b92",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "da4fd5903d085e66",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "verify size",
+        "func": "msg.filesize = msg.payload.length\n\nif(msg.filesize < 30e3)\n{\n    node.status({fill:\"red\",shape:\"ring\",text:\"size \"+(msg.filesize/1000) + 'k' });\n    throw \"file \"+msg.video_id+\" too small (\"+msg.filesize+\") for device \" + msg.device_id;\n}\nnode.status({ fill: \"green\", shape: \"ring\", text: \"size \" + (msg.filesize / 1000) + 'k' });\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 380,
+        "wires": [
+            [
+                "3067981866e6e23e"
+            ]
+        ]
+    },
+    {
+        "id": "ad7adc956f38b45f",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/up/device/:imei/thumbnail",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 740,
+        "wires": [
+            [
+                "0d2404e2007e08d9",
+                "ee2371e189626b5c"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-video-o"
+    },
+    {
+        "id": "7f90dbb14582c4a2",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "use curl to upload thumbnail images into blobstorage",
+        "info": "",
+        "x": 250,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "0d2404e2007e08d9",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "always ok",
+        "statusCode": "204",
+        "headers": {},
+        "x": 680,
+        "y": 800,
+        "wires": [],
+        "info": "always ok, so abusing is a bit harder\r\nand the device can't do anything about errors anyways"
+    },
+    {
+        "id": "2e6608c80cd362d2",
+        "type": "catch",
+        "z": "f6f2187d.f17ca8",
+        "name": "Catchall error reporter",
+        "scope": null,
+        "uncaught": true,
+        "x": 980,
+        "y": 100,
+        "wires": [
+            [
+                "2dfab53ffb3c5b13",
+                "b36abf7d8082b51e"
+            ]
+        ]
+    },
+    {
+        "id": "2dfab53ffb3c5b13",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "29498344815766ff",
+        "type": "http request",
+        "z": "f6f2187d.f17ca8",
+        "name": "post to slack",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://hooks.slack.com/triggers/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",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1630,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b36abf7d8082b51e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "format report for slack",
+        "func": "    \nif(msg.error.message.includes(\"too small (0) for device Nestwacht 019\")){\n    msg = null;\n    return msg;\n}\n\nmsg.payload = {\n    message: JSON.stringify(msg.error,null,null)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1320,
+        "y": 100,
+        "wires": [
+            [
+                "29498344815766ff",
+                "b8f9e2b3600279e1"
+            ]
+        ]
+    },
+    {
+        "id": "02370505228e9714",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "throw test error",
+        "func": "\nthrow \"test error\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1100,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8f9e2b3600279e1",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "d8fedde14daba7df",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set device_id",
+        "func": "\nvar lookup = global.get(\"devicenames\")\n\nmsg.device_id = lookup[msg.req.params.imei] || msg.req.params.imei\nmsg.video_id=msg.req.params.video_id\nnode.status({ fill: \"gray\", shape: \"square\", text: msg.device_id});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 380,
+        "wires": [
+            [
+                "da4fd5903d085e66"
+            ]
+        ]
+    },
+    {
+        "id": "ee2371e189626b5c",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set device_id",
+        "func": "\nvar lookup = global.get(\"devicenames\")\n\nmsg.device_id = lookup[msg.req.params.imei] || msg.req.params.imei\nnode.status({ fill: \"gray\", shape: \"square\", text: msg.device_id});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 740,
+        "wires": [
+            [
+                "cdd9d24e8efae5ca"
+            ]
+        ]
+    },
+    {
+        "id": "d7915d5db28b58b7",
+        "type": "catch",
+        "z": "f6f2187d.f17ca8",
+        "name": "catch blob error",
+        "scope": [
+            "9b1626db5adbb52a"
+        ],
+        "uncaught": false,
+        "x": 920,
+        "y": 1040,
+        "wires": [
+            [
+                "95e08452ca551325",
+                "090aecd6cf8c0a4b"
+            ]
+        ]
+    },
+    {
+        "id": "95e08452ca551325",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "blob error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "862dd56babee142c",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "these are unfound blobs",
+        "info": "",
+        "x": 800,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "090aecd6cf8c0a4b",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "404",
+        "statusCode": "404",
+        "headers": {},
+        "x": 1110,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "91999b8b7192a1a8",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "simulate error",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 870,
+        "y": 40,
+        "wires": [
+            [
+                "02370505228e9714"
+            ]
+        ]
+    },
+    {
+        "id": "e43af03388d35c76",
+        "type": "Aleph Save Blob",
+        "z": "f6f2187d.f17ca8",
+        "name": "Azure Save Blob Storage",
+        "x": 1240,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9b1626db5adbb52a",
+        "type": "Aleph Get Blob",
+        "z": "f6f2187d.f17ca8",
+        "name": "Azure Get Blob Storage",
+        "x": 810,
+        "y": 1000,
+        "wires": [
+            [
+                "5dd6dab4277027fa",
+                "3807d8d19e41a15b"
+            ]
+        ]
+    },
+    {
+        "id": "0b437d259e222b59",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set device name lookup",
+        "func": "global.set(\"devicenames\",\n{\n        \"350976656615371\": \"testdevice donny\",\n        \"350976656615785\": \"Nestwacht 001\",\n        \"350976656616205\": \"Nestwacht 002\",\n        \"350976656616213\": \"Nestwacht 003\",\n        \"350976656616056\": \"Nestwacht 004\",\n        \"350976656615165\": \"Nestwacht 005\",\n        \"350976656614556\": \"Nestwacht 006\",\n        \"350976656614945\": \"Nestwacht 007\",\n        \"350976656599864\": \"Nestwacht 008\",\n        \"350976656614457\": \"Nestwacht 009\",\n        \"350976656614523\": \"Nestwacht 010\",\n        \"350976656615199\": \"Nestwacht 011\",\n        \"350976656614853\": \"Nestwacht 012\",\n        \"350976656615694\": \"Nestwacht 013\",\n        \"350976656615173\": \"Nestwacht 014\",\n        \"350976656615108\": \"Nestwacht 015\",\n        \"350976656615603\": \"Nestwacht 016\",\n        \"350976656614564\": \"Nestwacht 017\",\n        \"350976656614705\": \"Nestwacht 018\",\n        \"350976656616262\": \"Nestwacht 019\",\n        \"350976656616510\": \"Nestwacht 020\",\n        \"350976656614341\": \"Nestwacht 021\",\n        \"350976656616049\": \"Nestwacht 022\",\n        \"350976656615181\": \"Nestwacht 023\",\n        \"350976656615686\": \"Nestwacht 024\",\n        \"350976656615314\": \"Nestwacht 025\",\n        \"351901936132640\": \"testdevice david\",\n        \"351516170548200\": \"testdevice powertest\"\n    \n}\n)\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e11973a9ad0996f",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "0b437d259e222b59"
+            ]
+        ]
+    },
+    {
+        "id": "3067981866e6e23e",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set shared_tennet_dir",
+        "func": "const filePath = \"/home/donny/shared_tennet/\";\n\nmsg.payload = 'mkdir -p ' + filePath;\nmsg.filepath = filePath;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 380,
+        "wires": [
+            [
+                "6bfc15cbefa8efe3",
+                "c7cbbe7b84dd1429",
+                "1e65d4080d957c73"
+            ]
+        ]
+    },
+    {
+        "id": "985dcf9027e8c385",
+        "type": "http in",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "url": "/test",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 60,
+        "y": 500,
+        "wires": [
+            [
+                "6ca4cc05ba48f5fb",
+                "86031b9535feba1a"
+            ]
+        ],
+        "icon": "font-awesome/fa-file-video-o"
+    },
+    {
+        "id": "6ca4cc05ba48f5fb",
+        "type": "http response",
+        "z": "f6f2187d.f17ca8",
+        "name": "always ok",
+        "statusCode": "200",
+        "headers": {},
+        "x": 240,
+        "y": 500,
+        "wires": [],
+        "info": "always ok, so abusing is a bit harder\r\nand the device can't do anything about errors anyways"
+    },
+    {
+        "id": "86031b9535feba1a",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "req",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 220,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "8e2b167f8584e53c",
+        "type": "file",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "filename": "filename",
+        "filenameType": "msg",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1880,
+        "y": 380,
+        "wires": [
+            [
+                "37ea52b344d7607d"
+            ]
+        ]
+    },
+    {
+        "id": "2d6778dc84ae252c",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set filename",
+        "func": "\nmsg.filename = msg.filepath + \"/\" + Date.now().toString() + \".jpeg\"\n\nnode.status({fill:\"green\",shape:\"circle\",text:msg.filename});\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1710,
+        "y": 380,
+        "wires": [
+            [
+                "8e2b167f8584e53c"
+            ]
+        ]
+    },
+    {
+        "id": "37ea52b344d7607d",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2070,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "6bfc15cbefa8efe3",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "shared_tennet_dir",
+        "x": 990,
+        "y": 440,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "eb064ef7f9b68905",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set device_id_dir",
+        "func": "msg.filepath = msg.filepath + \"/\" + msg.device_id;\nmsg.payload = 'mkdir -p ' + msg.filepath;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1490,
+        "y": 380,
+        "wires": [
+            [
+                "b50cc16066b9f8c7",
+                "1e65d4080d957c73",
+                "2d6778dc84ae252c"
+            ]
+        ]
+    },
+    {
+        "id": "b50cc16066b9f8c7",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "Device_id",
+        "x": 1500,
+        "y": 440,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c7cbbe7b84dd1429",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set weeknumber_id",
+        "func": "const filePath = \"/home/donny/shared_tennet/\";\nconst weekNumber = global.get(\"weekNumber\");\nconst date = new Date();\nconst year = date.getFullYear();\n\n\nmsg.filepath += year + \"_\" + weekNumber\n// Check if the directory exists (basic check)\n\nmsg.payload = 'mkdir -p ' + msg.filepath;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1250,
+        "y": 380,
+        "wires": [
+            [
+                "eb064ef7f9b68905",
+                "9df37342ab1c4a4c",
+                "1e65d4080d957c73"
+            ]
+        ]
+    },
+    {
+        "id": "eff53b95ca001d26",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set device name lookup",
+        "func": "// Get the current date\nconst today = new Date();\n\n// Get the first day of the year\nconst firstDayOfYear = new Date(today.getFullYear(), 0, 1);\n\n// Calculate the number of days by subtracting the time values (in milliseconds)\n// of each date, then converting to days.\nconst dayOfYear = Math.floor((today.getTime() - firstDayOfYear.getTime()) / (1000 * 60 * 60 * 24));\n\n// Now, calculate the week number based on the day of the year.\nconst weekNumber = Math.ceil((dayOfYear + firstDayOfYear.getDay() + 1) / 7);\n\n// Set the global counter.\nglobal.set('weekNumber', weekNumber);\n\n// Output the week number in the message payload for easy debugging.\nmsg.payload = weekNumber;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 140,
+        "wires": [
+            [
+                "3f09ed803e342061"
+            ]
+        ]
+    },
+    {
+        "id": "a40d674166eb4318",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "weekly counter",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 00 * * 1",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "eff53b95ca001d26",
+                "9c8989f75ac6e632"
+            ]
+        ]
+    },
+    {
+        "id": "3f09ed803e342061",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "WeekNumber",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9c8989f75ac6e632",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "WeekNumber",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "9df37342ab1c4a4c",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "weekNumber",
+        "x": 1250,
+        "y": 440,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1e65d4080d957c73",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug Filesystem",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1510,
+        "y": 300,
+        "wires": []
+    }
+]

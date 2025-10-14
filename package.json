@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@rosepetal/node-red-contrib-rosepetal-image-tools": "~1.0.1",
+    "detect-port": "^1.5.1",
+    "gyp": "^0.3.0",
+    "node-red-contrib-azure-blob-storage-aleph": "~0.5.0",
+    "node-red-contrib-cloud-firestore": "^3.1.0",
+    "node-red-contrib-image-tools": "~2.1.1",
+    "node-red-contrib-influxdb": "~0.7.0",
+    "node-red-contrib-lwm2m": "^2.12.3",
+    "node-red-dashboard": "^3.6.2",
+    "npm-check-updates": "^16.14.15"
+  }
+}

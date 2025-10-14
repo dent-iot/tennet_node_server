@@ -1,0 +1,1613 @@
+[
+    {
+        "id": "e237f4a1.bd2cd",
+        "type": "tab",
+        "label": "current view",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "e28db99d891c46df",
+        "type": "tab",
+        "label": "WiFiLedController",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8dfe67032d553bbe",
+        "type": "ui_tab",
+        "name": "chart",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f36406564ace2ee2",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "true",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 120,
+                "sy": 120,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "0fe5d7e3077d723e",
+        "type": "ui_group",
+        "name": "function",
+        "tab": "8dfe67032d553bbe",
+        "order": 1,
+        "disp": true,
+        "width": "16",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0f80770cfd0571b3",
+        "type": "ui_spacer",
+        "z": "e237f4a1.bd2cd",
+        "name": "spacer",
+        "group": "0fe5d7e3077d723e",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "97503e61ebf19a9e",
+        "type": "ui_tab",
+        "name": "LedController",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5c12038baac37baf",
+        "type": "ui_group",
+        "name": "Colors",
+        "tab": "97503e61ebf19a9e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "561a97c4b2023450",
+        "type": "inject",
+        "z": "e237f4a1.bd2cd",
+        "name": "getRequest current packages",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "e9e876ca54db9640"
+            ]
+        ]
+    },
+    {
+        "id": "f72ad484cd0d12bd",
+        "type": "switch",
+        "z": "e237f4a1.bd2cd",
+        "name": "waitForMessage0",
+        "property": "msgNum",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "msg0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg4",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg5",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg6",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "msg7",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 8,
+        "x": 1210,
+        "y": 360,
+        "wires": [
+            [
+                "60b4a57c385b2552",
+                "d5d45839ce474e81"
+            ],
+            [
+                "8d0735f6aaeb9823",
+                "d5d45839ce474e81"
+            ],
+            [
+                "56c3ce354dc98818",
+                "d5d45839ce474e81"
+            ],
+            [
+                "61bb8af2b13c0409",
+                "d5d45839ce474e81"
+            ],
+            [
+                "4101e6499226554e"
+            ],
+            [
+                "66fb6703366d58f4"
+            ],
+            [
+                "45405f3d8343bb92"
+            ],
+            [
+                "9c88997013cdfa72"
+            ]
+        ]
+    },
+    {
+        "id": "60b4a57c385b2552",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"firstMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1150)/1900 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79ae740f91bad26a",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "divideString",
+        "func": "// Assuming msg.payload contains an array of values\nvar msgSplit = msg.payload.split(',')\nvar msgNum = msgSplit[0];\nglobal.set(\"msgNum\", msgNum);\nmsg.payload = msgSplit[1];\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 360,
+        "wires": [
+            [
+                "1516f3556ef0ca04"
+            ]
+        ]
+    },
+    {
+        "id": "f100fee399b48f9e",
+        "type": "inject",
+        "z": "e237f4a1.bd2cd",
+        "name": "couple packeges current graph",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "x": 1170,
+        "y": 1000,
+        "wires": [
+            [
+                "e8cba28ff0928ead"
+            ]
+        ]
+    },
+    {
+        "id": "e8cba28ff0928ead",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "coupleArrays",
+        "func": "// Assuming msg.payload contains an array of values\nvar msg1 = global.get(\"firstMessage\");;\nvar msg2 = global.get(\"secondMessage\");\nvar msg3 = global.get(\"thirdMessage\");\nvar msg4 = global.get(\"fourthMessage\");\nvar msg5 = global.get(\"fifthMessage\");\nvar msg6 = global.get(\"sixthMessage\");\nvar msg7 = global.get(\"seventhMessage\");\nvar msg8 = global.get(\"eighthMessage\");\n\nvar data = [];\nvar multiplier = 1;\nvar j = 0;\nfor (var i = 0; i < msg1.length -1; i++) {\n    data.push({ x: j*multiplier, y: msg1[i]});\n    j++\n}\nfor (var i = 0; i < msg2.length -1 ; i++) {\n    data.push({ x: j*multiplier, y: msg2[i]});\n    j++;\n}\nfor (var i = 0; i < msg3.length -1; i++) {\n    data.push({ x: j*multiplier, y: msg3[i]});\n    j++;\n}\nfor (var i = 0; i < msg4.length - 1; i++) {\n    data.push({ x: j * multiplier, y: msg4[i] });\n    j++;\n}\nfor (var i = 0; i < msg5.length - 1; i++) {\n    data.push({ x: j * multiplier, y: msg5[i] });\n    j++;\n} \nfor (var i = 0; i < msg6.length - 1; i++) {\n    data.push({ x: j * multiplier, y: msg6[i] });\n    j++;\n}\nfor (var i = 0; i < msg7.length - 1; i++) {\n    data.push({ x: j * multiplier, y: msg7[i] });\n    j++;\n}\nfor (var i = 0; i < msg8.length - 1; i++) {\n    data.push({ x: j * multiplier, y: msg8[i] });\n    j++;\n}\n\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1410,
+        "y": 1000,
+        "wires": [
+            [
+                "94aebcca8a43b533"
+            ]
+        ]
+    },
+    {
+        "id": "94aebcca8a43b533",
+        "type": "ui_chart",
+        "z": "e237f4a1.bd2cd",
+        "name": "",
+        "group": "0fe5d7e3077d723e",
+        "order": 0,
+        "width": "16",
+        "height": "9",
+        "label": "totalCurrent",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "auto",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "0.75",
+        "removeOlder": "5",
+        "removeOlderPoints": "1600",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1690,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8d0735f6aaeb9823",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"secondMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1150)/1900 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "56c3ce354dc98818",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"thirdMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1150)/1900 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61bb8af2b13c0409",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"fourthMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1150)/1900 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5d45839ce474e81",
+        "type": "debug",
+        "z": "e237f4a1.bd2cd",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1400,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "1516f3556ef0ca04",
+        "type": "switch",
+        "z": "e237f4a1.bd2cd",
+        "name": "",
+        "property": "msgNum",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "neq",
+                "v": "bat",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "bat",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 790,
+        "y": 360,
+        "wires": [
+            [
+                "57126c5384634801",
+                "89b5527b1defb069"
+            ],
+            [
+                "96f7bd20ac099241"
+            ]
+        ]
+    },
+    {
+        "id": "96f7bd20ac099241",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "function 1",
+        "func": "var values = msg.payload;\nparseFloat(values);\nmsg.payload = values;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 700,
+        "wires": [
+            [
+                "079adc79d6302ebb"
+            ]
+        ]
+    },
+    {
+        "id": "079adc79d6302ebb",
+        "type": "ui_gauge",
+        "z": "e237f4a1.bd2cd",
+        "name": "",
+        "group": "0fe5d7e3077d723e",
+        "order": 2,
+        "width": "2",
+        "height": "2",
+        "gtype": "gage",
+        "title": "Battery SoC",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#b30012",
+            "#32e600",
+            "#43cb3a"
+        ],
+        "seg1": "20",
+        "seg2": "100",
+        "diff": false,
+        "className": "",
+        "x": 1290,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "57126c5384634801",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "function 2",
+        "func": "var divide = msg.payload;\nif (divide != \"0000\") {\n    var divide = divide.split(/\\s+/).map(parseFloat);\n    divide.splice(divide.length - 2, 2);\n    msg.payload = divide;\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 980,
+        "y": 360,
+        "wires": [
+            [
+                "f72ad484cd0d12bd"
+            ]
+        ]
+    },
+    {
+        "id": "a0b03a6f2a2d04dd",
+        "type": "ui_button",
+        "z": "e237f4a1.bd2cd",
+        "name": "",
+        "group": "0fe5d7e3077d723e",
+        "order": 3,
+        "width": "3",
+        "height": "2",
+        "passthru": false,
+        "label": "Turn on solenoid",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "solenoidButton",
+        "payloadType": "global",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "46509e9ceb182b6a",
+                "517f1c702070c17c"
+            ]
+        ]
+    },
+    {
+        "id": "1d5116da60907c01",
+        "type": "inject",
+        "z": "e237f4a1.bd2cd",
+        "name": "set globals",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "x": 1110,
+        "y": 1100,
+        "wires": [
+            [
+                "0620cd8e4355a7de"
+            ]
+        ]
+    },
+    {
+        "id": "0620cd8e4355a7de",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "function 4",
+        "func": "global.set(\"solenoidButton\", \"0\");\nglobal.set(\"sampleFrequency\", \"500\");\nglobal.set(\"sampleTime\", \"400\");\nglobal.set(\"firstMessage\", \"0\");\nglobal.set(\"secondeMessage\", \"0\");\nglobal.set(\"thirdMessage\", \"0\");\nglobal.set(\"fourthMessage\", \"0\");\nglobal.set(\"fifthMessage\", \"0\");\nglobal.set(\"sixthMessage\", \"0\");\nglobal.set(\"seventhMessage\", \"0\");\nglobal.set(\"eighthMessage\", \"0\");\n\nmsg.payload = \"0\\n500\\n400\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 1100,
+        "wires": [
+            [
+                "dcdd589bb1196e8f"
+            ]
+        ]
+    },
+    {
+        "id": "e9e876ca54db9640",
+        "type": "coap request",
+        "z": "e237f4a1.bd2cd",
+        "method": "GET",
+        "confirmable": false,
+        "observe": true,
+        "multicast": false,
+        "url": "coap://californium.eclipseprojects.io/large-update",
+        "content-format": "text/plain",
+        "raw-buffer": false,
+        "name": "test",
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "79ae740f91bad26a"
+            ]
+        ]
+    },
+    {
+        "id": "ed3d71a2aa1f671a",
+        "type": "ui_dropdown",
+        "z": "e237f4a1.bd2cd",
+        "name": "",
+        "label": "change sample frequency",
+        "tooltip": "",
+        "place": "",
+        "group": "0fe5d7e3077d723e",
+        "order": 4,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "2000Hz",
+                "value": "500",
+                "type": "str"
+            },
+            {
+                "label": "1000Hz",
+                "value": "1000",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "payload",
+        "topicType": "msg",
+        "className": "",
+        "x": 270,
+        "y": 640,
+        "wires": [
+            [
+                "acd43b79edd6c649",
+                "9aaa9e01d3582ce1"
+            ]
+        ]
+    },
+    {
+        "id": "bd34a5a3289f98dc",
+        "type": "ui_dropdown",
+        "z": "e237f4a1.bd2cd",
+        "name": "",
+        "label": "change total sample time",
+        "tooltip": "",
+        "place": "",
+        "group": "0fe5d7e3077d723e",
+        "order": 5,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "400ms",
+                "value": "400",
+                "type": "str"
+            },
+            {
+                "label": "600ms",
+                "value": "600",
+                "type": "str"
+            },
+            {
+                "label": "800ms",
+                "value": "800",
+                "type": "str"
+            },
+            {
+                "label": "1000ms",
+                "value": "1000",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "payload",
+        "topicType": "msg",
+        "className": "",
+        "x": 290,
+        "y": 820,
+        "wires": [
+            [
+                "ccb1a7297d4430d3",
+                "6e7a1df664510d5d"
+            ]
+        ]
+    },
+    {
+        "id": "46509e9ceb182b6a",
+        "type": "debug",
+        "z": "e237f4a1.bd2cd",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "acd43b79edd6c649",
+        "type": "debug",
+        "z": "e237f4a1.bd2cd",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 260,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "ccb1a7297d4430d3",
+        "type": "debug",
+        "z": "e237f4a1.bd2cd",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 220,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "a9b43e645e7f69a0",
+        "type": "inject",
+        "z": "e237f4a1.bd2cd",
+        "name": "Update settings server",
+        "props": [],
+        "repeat": "4",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 1150,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dcdd589bb1196e8f",
+        "type": "coap request",
+        "z": "e237f4a1.bd2cd",
+        "method": "PUT",
+        "confirmable": false,
+        "observe": true,
+        "multicast": false,
+        "url": "coap://californium.eclipseprojects.io/validate",
+        "content-format": "text/plain",
+        "raw-buffer": false,
+        "name": "test",
+        "x": 1670,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "517f1c702070c17c",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "function 5",
+        "func": "//get the globar variables of the dashboard\nvar msgButt = global.get(\"solenoidButton\");\nvar msgSample = global.get(\"sampleFrequency\");\nvar msgTime = global.get(\"sampleTime\");\n//split the button string to update the counter\nvar msgNumber = parseInt(msgButt);\nmsgNumber += 1;\nif(msgNumber >=9)\n    msgNumber = 0;\nvar msgString = msgNumber.toString();\nglobal.set(\"solenoidButton\", msgString);\nmsg.payload = msgString + \"\\n \" + msgSample + \"\\n \" + msgTime + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 500,
+        "wires": [
+            [
+                "b9424a11c80ea184"
+            ]
+        ]
+    },
+    {
+        "id": "b9424a11c80ea184",
+        "type": "coap request",
+        "z": "e237f4a1.bd2cd",
+        "method": "PUT",
+        "confirmable": false,
+        "observe": true,
+        "multicast": true,
+        "url": "coap://californium.eclipseprojects.io/validate",
+        "content-format": "text/plain",
+        "raw-buffer": false,
+        "name": "test",
+        "x": 790,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9aaa9e01d3582ce1",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "function 6",
+        "func": "//get the globar variables of the dashboard\nvar msgSample = msg.payload;\nvar msgButt = global.get(\"solenoidButton\")\nvar msgTime = global.get(\"sampleTime\");\n//split the button string to update the counter\nglobal.set(\"sampleFrequency\", msgSample);\nmsg.payload = msgButt + \"\\n \" + msgSample + \"\\n \" + msgTime + \"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 640,
+        "wires": [
+            [
+                "1ab7b4d78abef50d"
+            ]
+        ]
+    },
+    {
+        "id": "1ab7b4d78abef50d",
+        "type": "coap request",
+        "z": "e237f4a1.bd2cd",
+        "method": "PUT",
+        "confirmable": false,
+        "observe": true,
+        "multicast": true,
+        "url": "coap://californium.eclipseprojects.io/validate",
+        "content-format": "text/plain",
+        "raw-buffer": false,
+        "name": "test",
+        "x": 810,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6e7a1df664510d5d",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "function 7",
+        "func": "//get the globar variables of the dashboard\nvar msgButt = global.get(\"solenoidButton\");\nvar msgSample = global.get(\"sampleFrequency\");\nvar msgTime = msg.payload;\nglobal.set(\"sampleTime\", msg.payload);\n//split the button string to update the counter\nmsg.payload = msgButt + \"\\n \" + msgSample + \"\\n \" + msgTime +\"\\n\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 820,
+        "wires": [
+            [
+                "50d0ea1e43504128"
+            ]
+        ]
+    },
+    {
+        "id": "50d0ea1e43504128",
+        "type": "coap request",
+        "z": "e237f4a1.bd2cd",
+        "method": "PUT",
+        "confirmable": false,
+        "observe": true,
+        "multicast": true,
+        "url": "coap://californium.eclipseprojects.io/validate",
+        "content-format": "text/plain",
+        "raw-buffer": false,
+        "name": "test",
+        "x": 810,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4101e6499226554e",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"fifthMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1200)/2000 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "66fb6703366d58f4",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"sixthMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1200)/2000 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "45405f3d8343bb92",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"seventhMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1200)/2000 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c88997013cdfa72",
+        "type": "function",
+        "z": "e237f4a1.bd2cd",
+        "name": "ready4plot",
+        "func": "var values = msg.payload; // Example values\nvalues.splice(0, 1);\nglobal.set(\"eighthMessage\", values);\nvar data = [];\nfor (var i = 0; i < values.length; i++) {\n    values[i] = (values[i] - 1200)/2000 * 0.7;\n    data.push({x: i, y: values[i]});\n}\nmsg.payload = [{\n    series: ['Current'], // Label for the data series\n    data: [data], // Array of data points (each point is an object with x and y properties)\n}];\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1550,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "89b5527b1defb069",
+        "type": "debug",
+        "z": "e237f4a1.bd2cd",
+        "name": "debug 17",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "aa8bc24b094ea113",
+        "type": "https-node",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "192.168.2.21:81/Blue",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 970,
+        "y": 440,
+        "wires": [
+            [
+                "f9fd932b72153cac"
+            ]
+        ]
+    },
+    {
+        "id": "f9fd932b72153cac",
+        "type": "debug",
+        "z": "e28db99d891c46df",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "8b8cf490c5b0aae8",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "Create postParams",
+        "func": "msg.headers = {};\nmsg.headers={ \n    'Authorization':  '123123123',\n    'Content-Type': 'application/x-www-form-urlencoded'\n};\nvar blue = msg.payload;\nvar ledNumber = global.get(\"ledNumber\");\nmsg.payload = {};\nmsg.payload={ \n    'ledNumber' : ledNumber,\n    'blue' : blue\n};\nglobal.set(\"Blue\", blue);\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "aa8bc24b094ea113",
+                "e0a27434ce00d273"
+            ]
+        ]
+    },
+    {
+        "id": "6049196e6a181d73",
+        "type": "ui_slider",
+        "z": "e28db99d891c46df",
+        "name": "Blue",
+        "label": "Blue",
+        "tooltip": "",
+        "group": "5c12038baac37baf",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "255",
+        "step": "5",
+        "className": "",
+        "x": 270,
+        "y": 440,
+        "wires": [
+            [
+                "8b8cf490c5b0aae8"
+            ]
+        ]
+    },
+    {
+        "id": "f5e27f148e6831b7",
+        "type": "ui_slider",
+        "z": "e28db99d891c46df",
+        "name": "Red",
+        "label": "Red",
+        "tooltip": "",
+        "group": "5c12038baac37baf",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "255",
+        "step": "5",
+        "className": "",
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "c76af7bda3b95ad8"
+            ]
+        ]
+    },
+    {
+        "id": "c4cb07ab3c45dee9",
+        "type": "ui_slider",
+        "z": "e28db99d891c46df",
+        "name": "Green",
+        "label": "Green",
+        "tooltip": "",
+        "group": "5c12038baac37baf",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "255",
+        "step": "5",
+        "className": "",
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "7b33f3a8b7e093ed"
+            ]
+        ]
+    },
+    {
+        "id": "b40af7d0fdf02d25",
+        "type": "ui_dropdown",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "5c12038baac37baf",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Desk",
+                "value": "0",
+                "type": "str"
+            },
+            {
+                "label": "Window",
+                "value": "1",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 260,
+        "y": 560,
+        "wires": [
+            [
+                "34127319cb6b213d"
+            ]
+        ]
+    },
+    {
+        "id": "d61869a449d40a3a",
+        "type": "inject",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "x": 310,
+        "y": 120,
+        "wires": [
+            [
+                "ddb42d7f2d7902bc"
+            ]
+        ]
+    },
+    {
+        "id": "ddb42d7f2d7902bc",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "set Globals",
+        "func": "global.set(\"Red\", \"0\");\nglobal.set(\"Blue\", \"0\");\nglobal.set(\"Green\", \"0\");\nglobal.set(\"ledNumber\", \"0\");\nglobal.set(\"White\", \"0\");\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7cec3e1efeaa941b",
+        "type": "https-node",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "192.168.2.21:81/Green",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 970,
+        "y": 500,
+        "wires": [
+            [
+                "b54f32349c22aa9b"
+            ]
+        ]
+    },
+    {
+        "id": "b54f32349c22aa9b",
+        "type": "debug",
+        "z": "e28db99d891c46df",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7b33f3a8b7e093ed",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "Create postParams",
+        "func": "msg.headers = {};\nmsg.headers={ \n    'Authorization':  '123123123',\n    'Content-Type': 'application/x-www-form-urlencoded'\n};\nvar green = msg.payload;\nvar ledNumber = global.get(\"ledNumber\");\nmsg.payload = {};\nmsg.payload={ \n    'ledNumber' : ledNumber,\n    'green' : green\n};\nglobal.set(\"Green\", green);\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 500,
+        "wires": [
+            [
+                "7cec3e1efeaa941b",
+                "e0a27434ce00d273"
+            ]
+        ]
+    },
+    {
+        "id": "34127319cb6b213d",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "Create postParams",
+        "func": "global.set(\"ledNumber\", msg.payload);\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 560,
+        "wires": [
+            [
+                "e0a27434ce00d273"
+            ]
+        ]
+    },
+    {
+        "id": "092fe3a560360be6",
+        "type": "https-node",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "192.168.2.21:81/Red",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 970,
+        "y": 380,
+        "wires": [
+            [
+                "e0d3a56c9fe166d2"
+            ]
+        ]
+    },
+    {
+        "id": "e0d3a56c9fe166d2",
+        "type": "debug",
+        "z": "e28db99d891c46df",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c76af7bda3b95ad8",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "Create postParams",
+        "func": "msg.headers = {};\nmsg.headers={ \n    'Authorization':  '123123123',\n    'Content-Type': 'application/x-www-form-urlencoded'\n};\nvar red = msg.payload;\nvar ledNumber = global.get(\"ledNumber\");\nmsg.payload = {};\nmsg.payload={ \n    'ledNumber' : ledNumber,\n    'red' : red\n};\nglobal.set(\"Red\", red);\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 380,
+        "wires": [
+            [
+                "092fe3a560360be6",
+                "e0a27434ce00d273"
+            ]
+        ]
+    },
+    {
+        "id": "8dccbd27b43a822e",
+        "type": "ui_switch",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "label": "audio",
+        "tooltip": "",
+        "group": "5c12038baac37baf",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 250,
+        "y": 620,
+        "wires": [
+            [
+                "6ec777afb172a8a2"
+            ]
+        ]
+    },
+    {
+        "id": "6ec777afb172a8a2",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "Create postParams",
+        "func": "msg.headers = {};\nmsg.headers={ \n    'Authorization':  '123123123',\n    'Content-Type': 'application/x-www-form-urlencoded'\n};\nvar ledNumber = global.get(\"ledNumber\");\n\nmsg.payload = {};\nmsg.payload={ \n    'ledNumber' : ledNumber,\n    'audio' : msg.payload\n};\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 620,
+        "wires": [
+            [
+                "e672909cb1474e40"
+            ]
+        ]
+    },
+    {
+        "id": "e672909cb1474e40",
+        "type": "https-node",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "192.168.2.23:81/audio",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 750,
+        "y": 620,
+        "wires": [
+            [
+                "d0d7e31fcc221562"
+            ]
+        ]
+    },
+    {
+        "id": "d0d7e31fcc221562",
+        "type": "debug",
+        "z": "e28db99d891c46df",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e0a27434ce00d273",
+        "type": "debug",
+        "z": "e28db99d891c46df",
+        "name": "debug 12",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "9d5bd10aca0c543c",
+        "type": "ui_slider",
+        "z": "e28db99d891c46df",
+        "name": "White",
+        "label": "White",
+        "tooltip": "",
+        "group": "5c12038baac37baf",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "255",
+        "step": "5",
+        "className": "",
+        "x": 270,
+        "y": 320,
+        "wires": [
+            [
+                "b4039d7d1baae1a1"
+            ]
+        ]
+    },
+    {
+        "id": "5fa84d370205009c",
+        "type": "https-node",
+        "z": "e28db99d891c46df",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "body",
+        "url": "192.168.2.21:81/White",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "senderr": false,
+        "x": 970,
+        "y": 320,
+        "wires": [
+            [
+                "7f53545bf47b5fb8"
+            ]
+        ]
+    },
+    {
+        "id": "7f53545bf47b5fb8",
+        "type": "debug",
+        "z": "e28db99d891c46df",
+        "name": "debug 14",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "b4039d7d1baae1a1",
+        "type": "function",
+        "z": "e28db99d891c46df",
+        "name": "Create postParams",
+        "func": "msg.headers = {};\nmsg.headers={ \n    'Authorization':  '123123123',\n    'Content-Type': 'application/x-www-form-urlencoded'\n};\nvar white = msg.payload;\nvar ledNumber = global.get(\"ledNumber\");\nmsg.payload = {};\nmsg.payload={ \n    'ledNumber' : ledNumber,\n    'white' : white\n};\nglobal.set(\"White\", white);\n\nreturn msg\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 320,
+        "wires": [
+            [
+                "5fa84d370205009c",
+                "e0a27434ce00d273"
+            ]
+        ]
+    }
+]
