@@ -16,8 +16,8 @@
         "upload": false,
         "skipBodyParsing": false,
         "swaggerDoc": "",
-        "x": 90,
-        "y": 320,
+        "x": 121.00006103515625,
+        "y": 336,
         "wires": [
             [
                 "bbf626ccfae366e0",
@@ -41,8 +41,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 820,
-        "y": 320,
+        "x": 851.0000610351562,
+        "y": 336,
         "wires": []
     },
     {
@@ -52,8 +52,8 @@
         "name": "always ok",
         "statusCode": "204",
         "headers": {},
-        "x": 420,
-        "y": 480,
+        "x": 451.00006103515625,
+        "y": 496,
         "wires": [],
         "info": "always ok, so abusing is a bit harder\r\nand the device can't do anything about errors anyways"
     },
@@ -62,7 +62,7 @@
         "type": "debug",
         "z": "f6f2187d.f17ca8",
         "name": "debug 1",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -70,8 +70,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 380,
-        "y": 280,
+        "x": 451.00006103515625,
+        "y": 296,
         "wires": []
     },
     {
@@ -86,8 +86,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 620,
-        "y": 380,
+        "x": 631.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "392a8c0d5b7556ba"
@@ -208,15 +208,15 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "set device_id",
-        "func": "\nvar lookup = global.get(\"devicenames\")\n\nmsg.device_id = lookup[msg.req.params.imei].name;\nif (msg.device_id == undefined){\n    return null;\n}\nmsg.video_id=msg.req.params.video_id\nnode.status({ fill: \"gray\", shape: \"square\", text: msg.device_id});\n\nreturn msg;",
+        "func": "var lookup = global.get(\"devicenames\")\nif(msg.req.params.imei in lookup){\n    msg.device_id = lookup[msg.req.params.imei].name;\n    msg.project = lookup[msg.req.params.imei].project;\n}\nelse{\n    throw new Error(\"imei number not found skipping this request\");\n}\nif (msg.req.params.imei.includes(\"/\")) {\n    throw new Error(\"imei wildcard contains forbidden characters\");\n}\n\nmsg.video_id=msg.req.params.video_id\n\nnode.status({ fill: \"gray\", shape: \"square\", text: `${msg.project}:${msg.device_id}` });\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 430,
-        "y": 380,
+        "x": 441.00006103515625,
+        "y": 396,
         "wires": [
             [
                 "da4fd5903d085e66"
@@ -257,7 +257,7 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "set device name lookup",
-        "func": "global.set(\"devicenames\",\n{\n        \"350976657191281\": {\n                \"name\": \"TENTEST\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976656615603\": {\n                \"name\": \"TENTEST1\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191182\": {\n                \"name\": \"TEN010\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191398\": {\n                \"name\": \"TEN009\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657236987\": {\n                \"name\": \"TEN008\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191349\": {\n                \"name\": \"TEN007\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657066723\": {\n                \"name\": \"TEN006\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191174\": {\n                \"name\": \"TEN005\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191158\": {\n                \"name\": \"TEN004\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191125\": {\n                \"name\": \"TEN003\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },    \n        \"350976657191802\": {\n                \"name\": \"TEN002\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \"350976657191000\": {\n                \"name\": \"TEN001\",\n                \"failed\": 0,\n                \"succes\": 0,\n                },\n        \n}\n)\nglobal.set(\"deviceErrors\", 0);\n\nreturn msg;",
+        "func": "global.set(\"devicenames\",\n{\n        \"350976657191281\": {\n                \"name\": \"TENIR001\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n                },\n        \"350976656615603\": {\n                \"name\": \"TENTEST1\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191182\": {\n                \"name\": \"TENIR002\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n                },\n        \"350976657191398\": {\n                \"name\": \"TEN009\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657236987\": {\n                \"name\": \"TEN008\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191349\": {\n                \"name\": \"TEN007\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657066723\": {\n                \"name\": \"TEN006\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191174\": {\n                \"name\": \"TEN005\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191158\": {\n                \"name\": \"TEN004\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191125\": {\n                \"name\": \"TEN003\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191802\": {\n                \"name\": \"TEN002\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n        \"350976657191000\": {\n                \"name\": \"TEN001\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetPicture\",\n                },\n\n        \"123456789012345\": {\n                \"name\": \"TENIR_TEST_david\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n                },\n        \"350976650412304\": {\n                \"name\": \"TENIR2\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n        }, \"350976650412494\": {\n                \"name\": \"TENIR3\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n        }, \"350976656940910\": {\n                \"name\": \"TENIR4\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n        }, \"351901936132640\": {\n                \"name\": \"TENIR5\",\n                \"failed\": 0,\n                \"succes\": 0,\n                \"project\": \"TennetIR\",\n        },\n}\n)\nglobal.set(\"deviceErrors\", 0);\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -304,15 +304,15 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "set shared_tennet_dir",
-        "func": "const filePath = \"/home/Donny/shared_tennet/\";\n\nmsg.payload = 'mkdir -p ' + filePath;\nmsg.filepath = filePath;\nreturn msg;\n",
+        "func": "const project =  msg.project;\n\nconst filePath = `/home/Donny/shared_tennet/${project}/`;\n\nmsg.payload = 'mkdir -p ' + filePath;\nmsg.filepath = filePath;\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1080,
-        "y": 380,
+        "x": 1111.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "6bfc15cbefa8efe3",
@@ -332,8 +332,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 2000,
-        "y": 380,
+        "x": 2671.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "37ea52b344d7607d",
@@ -346,15 +346,15 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "set filename",
-        "func": "msg.filename = msg.filepath + \"/\" + Date.now().toString() + \".jpeg\",\nmsg.payload = msg.req.body;\nnode.status({fill:\"green\",shape:\"circle\",text:msg.filename});\n\nreturn msg;",
+        "func": "msg.filename = msg.filepath + \"/\" + Date.now().toString() + msg.extension,\nmsg.payload = msg.req.body;\nnode.status({fill:\"green\",shape:\"circle\",text:msg.filename});\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1830,
-        "y": 380,
+        "x": 2401.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "8e2b167f8584e53c"
@@ -374,8 +374,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2170,
-        "y": 380,
+        "x": 3101.0000610351562,
+        "y": 316,
         "wires": []
     },
     {
@@ -390,8 +390,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "shared_tennet_dir",
-        "x": 1230,
-        "y": 460,
+        "x": 1261.0000610351562,
+        "y": 476,
         "wires": [
             [],
             [],
@@ -410,13 +410,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1610,
-        "y": 380,
+        "x": 1641.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "b50cc16066b9f8c7",
                 "1e65d4080d957c73",
-                "2d6778dc84ae252c"
+                "fdfa2c7acc8bb2f9"
             ]
         ]
     },
@@ -432,8 +432,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "Device_id",
-        "x": 1680,
-        "y": 460,
+        "x": 1711.0000610351562,
+        "y": 476,
         "wires": [
             [],
             [],
@@ -452,8 +452,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1370,
-        "y": 380,
+        "x": 1401.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "eb064ef7f9b68905",
@@ -466,7 +466,7 @@
         "id": "eff53b95ca001d26",
         "type": "function",
         "z": "f6f2187d.f17ca8",
-        "name": "set device name lookup",
+        "name": "set new weeknumber",
         "func": "// Get the current date\nconst today = new Date();\n\n// Get the first day of the year\nconst firstDayOfYear = new Date(today.getFullYear(), 0, 1);\n\n// Calculate the number of days by subtracting the time values (in milliseconds)\n// of each date, then converting to days.\nconst dayOfYear = Math.floor((today.getTime() - firstDayOfYear.getTime()) / (1000 * 60 * 60 * 24));\n\n// Now, calculate the week number based on the day of the year.\nconst weekNumber = Math.ceil((dayOfYear + firstDayOfYear.getDay() + 1) / 7);\n\n// Set the global counter.\nglobal.set('weekNumber', weekNumber);\n\n// Output the week number in the message payload for easy debugging.\nmsg.payload = weekNumber;\n\nreturn msg;",
         "outputs": 1,
         "timeout": "",
@@ -474,7 +474,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 410,
+        "x": 400,
         "y": 140,
         "wires": [
             [
@@ -558,8 +558,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "weekNumber",
-        "x": 1450,
-        "y": 460,
+        "x": 1481.0000610351562,
+        "y": 476,
         "wires": [
             [],
             [],
@@ -579,8 +579,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1630,
-        "y": 300,
+        "x": 1838.9999389648438,
+        "y": 304,
         "wires": []
     },
     {
@@ -664,15 +664,15 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "Add deviceerror",
-        "func": "var lookup = global.get(\"devicenames\")\nif(msg.succes){\n    lookup[msg.req.params.imei].succes++; \n    global.set(\"devicenames\", lookup);\n    node.status({ fill: \"green\", shape: \"ring\", text: \"name: \" + lookup[msg.req.params.imei].name + \"\\nfailed: \" + lookup[msg.req.params.imei].failed + \"\\tsucces: \" + lookup[msg.req.params.imei].succes });\n    return msg;\n} else{\n    lookup[msg.req.params.imei].failed++; \n    node.status({ fill: \"red\", shape: \"ring\", text: \"name: \" + lookup[msg.req.params.imei].name + \"\\nfailed: \" + lookup[msg.req.params.imei].failed + \"\\tsucces: \" + lookup[msg.req.params.imei].succes });\n    global.set(\"devicenames\", lookup);\n    throw new Error(\"size was to small skipping this picture\");\n}\n\n",
+        "func": "var lookup = global.get(\"devicenames\")\nvar now = new Date(Date.now());\nif(msg.succes){\n    lookup[msg.req.params.imei].succes++; \n    global.set(\"devicenames\", lookup);\n    node.status({ fill: \"green\", shape: \"ring\", text: \"name: \" + lookup[msg.req.params.imei].name + \"\\n failed: \" + lookup[msg.req.params.imei].failed + \"\\tsucces: \" + lookup[msg.req.params.imei].succes + \"\\n\" + \"timedstamp: \" + now.toString() });\n    return msg;\n} else{\n    lookup[msg.req.params.imei].failed++; \n    node.status({ fill: \"red\", shape: \"ring\", text: \"name: \" + lookup[msg.req.params.imei].name + \"\\nfailed: \" + lookup[msg.req.params.imei].failed + \"\\tsucces: \" + lookup[msg.req.params.imei].succes + \"\\n\" + \"timedstamp: \" + now.toString() });\n    global.set(\"devicenames\", lookup);\n    throw new Error(\"size was to small skipping this picture\");\n}\n\n",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 800,
-        "y": 380,
+        "x": 831.0000610351562,
+        "y": 396,
         "wires": [
             [
                 "3067981866e6e23e"
@@ -684,11 +684,12 @@
         "type": "Aleph Save Blob",
         "z": "f6f2187d.f17ca8",
         "name": "Manometer Pilot Storage",
-        "x": 2410,
-        "y": 460,
+        "x": 3390,
+        "y": 400,
         "wires": [
             [
-                "441d48f520f42fe3"
+                "441d48f520f42fe3",
+                "6a9116224fad5da5"
             ]
         ]
     },
@@ -697,19 +698,19 @@
         "type": "function",
         "z": "f6f2187d.f17ca8",
         "name": "setup 4 blob",
-        "func": "const weekNumber = global.get(\"weekNumber\");\nconst date = new Date();\nconst year = date.getFullYear();\nmsg.payload = msg.filename;\nmsg.weeknumber = year + \"_\" + weekNumber;\nmsg.blobName = \"TennetManometer/\" + msg.weeknumber + '/' + msg.device_id + '/' + Date.now().toString() + \".jpeg\";\nreturn msg;",
+        "func": "const weekNumber = global.get(\"weekNumber\");\nconst date = new Date();\nconst year = date.getFullYear();\n\nlet project = msg.project;\n\n\nmsg.payload = msg.filename;\nmsg.weeknumber = year + \"_\" + weekNumber;\nmsg.blobName = project + \"/\" + msg.weeknumber + '/' + msg.device_id + '/' + Date.now().toString() + msg.extension;\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 2190,
-        "y": 460,
+        "x": 3121.0000610351562,
+        "y": 396,
         "wires": [
             [
-                "a060c4b55e6d3f59",
-                "afebb94621fd8037"
+                "afebb94621fd8037",
+                "a060c4b55e6d3f59"
             ]
         ]
     },
@@ -726,8 +727,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2650,
-        "y": 460,
+        "x": 3730,
+        "y": 400,
         "wires": []
     },
     {
@@ -743,12 +744,322 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 2340,
-        "y": 280,
+        "x": 3331.0000610351562,
+        "y": 316,
         "wires": []
     },
     {
-        "id": "6d0de6dafc92b5b9",
+        "id": "7810bf9b2c1bfbd6",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "regular image",
+        "info": "",
+        "x": 2150,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f8e667c6b68f0821",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "ext = .jpeg",
+        "func": "msg.extension=\".jpeg\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2170,
+        "y": 420,
+        "wires": [
+            [
+                "2d6778dc84ae252c"
+            ]
+        ]
+    },
+    {
+        "id": "432cb403c4410d4a",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": " ext = .bin",
+        "func": "msg.extension = \".bin\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2160,
+        "y": 360,
+        "wires": [
+            [
+                "2d6778dc84ae252c"
+            ]
+        ]
+    },
+    {
+        "id": "5d99edc82dc927f4",
+        "type": "comment",
+        "z": "f6f2187d.f17ca8",
+        "name": "raw image",
+        "info": "",
+        "x": 2180,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "29a92d71b4d2a874",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "ext = .png",
+        "func": "msg.extension = \".png\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2920,
+        "y": 760,
+        "wires": [
+            [
+                "575da2bc5d744908",
+                "2b2835ea6c4c181c"
+            ]
+        ]
+    },
+    {
+        "id": "6962eab6cd20e9d7",
+        "type": "exec",
+        "z": "f6f2187d.f17ca8",
+        "command": "/opt/image_decoder/decode.sh ",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "decode",
+        "x": 2740,
+        "y": 780,
+        "wires": [
+            [
+                "29a92d71b4d2a874"
+            ],
+            [
+                "2b2835ea6c4c181c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c3de51256bd3bb5f",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "set decode args",
+        "func": "let outfile = msg.filename.replace(/.bin$/, \".png\");\n\nmsg.payload = msg.filename + \" \" + outfile;\n\n\nmsg.filename = outfile;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2500,
+        "y": 780,
+        "wires": [
+            [
+                "6962eab6cd20e9d7"
+            ]
+        ]
+    },
+    {
+        "id": "2b2835ea6c4c181c",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 3040,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "6a9116224fad5da5",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "process raw images",
+        "property": "extension",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": ".bin",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 3540,
+        "y": 520,
+        "wires": [
+            [
+                "c3de51256bd3bb5f"
+            ]
+        ]
+    },
+    {
+        "id": "99197be7cfdc746f",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 270,
+        "y": 940,
+        "wires": [
+            [
+                "8b13c1ae32e0819e"
+            ]
+        ]
+    },
+    {
+        "id": "72fd5423a4530040",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "2",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "2",
+        "payloadType": "num",
+        "x": 270,
+        "y": 1020,
+        "wires": [
+            [
+                "8b13c1ae32e0819e"
+            ]
+        ]
+    },
+    {
+        "id": "61f6db81d586b604",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "224abafb998bb514",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "fdfa2c7acc8bb2f9",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "is raw?",
+        "property": "req.query.raw",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 1880,
+        "y": 380,
+        "wires": [
+            [
+                "432cb403c4410d4a"
+            ],
+            [
+                "f8e667c6b68f0821"
+            ]
+        ]
+    },
+    {
+        "id": "8b13c1ae32e0819e",
+        "type": "switch",
+        "z": "f6f2187d.f17ca8",
+        "name": "is one",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "else"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 980,
+        "wires": [
+            [
+                "61f6db81d586b604"
+            ],
+            [
+                "224abafb998bb514"
+            ]
+        ]
+    },
+    {
+        "id": "1d052c3a16101e28",
         "type": "global-config",
         "env": [],
         "modules": {
